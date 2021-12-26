@@ -2,4 +2,4 @@
 Simple JavaScript graphing calculator  
 It can plot functions with x parameter using JS operators
 
-*Live-example available at https://basedest.github.io/js-gcalc/*
+*Live-example available [here](https://basedest.github.io/js-gcalc/)*
