@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<title>Graphing Calculator</title>
+		<meta name="author" content="Shcherbakov Ivan (@basedest)">
+		<link href="styles.css" rel="stylesheet">
+		<script src="script.js"></script>
+	</head>
+	<body onload="setup();">
+
+		<canvas width="800px" height="800px" id="basedCanvas"></canvas>
+		<div>
+			<label for="func">Enter function f(x) using JS operators</label><br>
+			<label><input type="button" value="Refresh" id="refresh" onclick="draw()"></label>
+			<input type="text" value="x" id="func">
+		</div>
+	</body>
+</html>
