@@ -11,13 +11,12 @@
 	</head>
 	<body onload="setup();">
 		<div class="centerize mt-2">
-			<canvas width="800px" height="800px" id="basedCanvas" class="border border-dark border-2"></canvas>
-			<div class="mt-2">
-				<label for="func">Enter function f(x) using JS operators</label><br>
-				<label><input type="button" value="Refresh" id="refresh" onclick="draw()" class="btn btn-outline-success"></label>
-				<input type="text" value="x" id="func">
+			<canvas class="border border-dark border-2" width="800px" height="800px" id="basedCanvas"></canvas>
+			<label class="text-center mt-2" for="func">Enter function f(x) using JS operators</label>
+			<div class="d-flex justify-content-center">
+				<input class="btn btn-outline-success" type="button" value="Refresh" id="refresh" onclick="draw()">
+				<input class="form-control ms-1" type="text" value="x" id="func">
 			</div>
 		</div>
-		
 	</body>
 </html>
