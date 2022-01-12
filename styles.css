@@ -1,4 +1,4 @@
-.centerize {
-    display: grid;
+/*stupid bootstrap doesn't have that*/
+.grid-center {
     place-items: center;
 }
