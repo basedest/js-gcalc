@@ -1,1 +1,4 @@
-/* nothing to see here*/
+.centerize {
+    display: grid;
+    place-items: center;
+}
