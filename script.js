@@ -5,17 +5,26 @@ let func = "x";
 
 function setup() {
   canvas = document.getElementById('basedCanvas');
+  //
+  if (visualViewport.width < visualViewport.height) {
+    canvas.style.width = '80vw';
+    canvas.style.height = '80vw';
+  }
+  else {
+    canvas.style.width = '80vh';
+    canvas.style.height = '80vh';
+  }
   ctx = canvas.getContext('2d');
   draw();
 }
 
-//setting canvas size to be in 1x resolution
+// setting canvas size to be in 1x resolution
 function resizeCanvasToDisplaySize(canvas) {
   // look up the size the canvas is being displayed
   const width = canvas.clientWidth;
   const height = canvas.clientHeight;
 
-  // If it's resolution does not match change it
+  // if it's resolution does not match change it
   if (canvas.width !== width || canvas.height !== height) {
     canvas.width = width;
     canvas.height = height;
@@ -32,12 +41,12 @@ function initilizeGraph() {
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.translate(canvas.width/2, canvas.height/2);
 
-  //clearing screen
+  // clearing screen
   ctx.clearRect(-canvas.width/2,-canvas.height/2,canvas.width,canvas.height);
-  //setting stroke style
+  // setting stroke style
   ctx.strokeStyle="Gray";
   ctx.lineWidth = 1;
-  //tracing vertical grid
+  // tracing vertical grid
   ctx.beginPath();
   for (var x = -canvas.width/2; x < canvas.width/2; x+=scale) {
     ctx.moveTo(x,-canvas.height/2);
@@ -45,7 +54,7 @@ function initilizeGraph() {
     ctx.stroke();
     ctx.moveTo(x,-canvas.height/2);
   }
-  //tracing horizontal grid
+  // tracing horizontal grid
   ctx.beginPath();
   for (var y = -canvas.height/2; y < canvas.height/2; y+=scale) {
     ctx.moveTo(-canvas.width/2,y);
@@ -53,7 +62,7 @@ function initilizeGraph() {
     ctx.stroke();
     ctx.moveTo(-canvas.width/2,y);
   }
-  //drawing axises
+  // drawing axises
   ctx.beginPath();
   ctx.strokeStyle="Black";
   ctx.lineWidth = 3;
@@ -83,7 +92,9 @@ function drawGraph(f) {
 }
 
 function buttonPress() {
-  func = document.getElementById("func").value;
+  let fStr = document.getElementById("func").value;
+  // add 'Math.' prefix to functions
+  func = fStr.replace(/(\w+(?=\())/gm, `Math.$1`);
   draw();
 }
 
