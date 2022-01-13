@@ -2,8 +2,3 @@
 .grid-center {
     place-items: center;
 }
-
-canvas {
-    width: 80vh; 
-    height: 80vh; 
-}
