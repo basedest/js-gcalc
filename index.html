@@ -10,13 +10,13 @@
 		<title>Graphing Calculator</title>
 	</head>
 	<body onload="setup();">
-		<div class="d-grid grid-center" id="main">
-			<canvas class="border border-dark border-2 m-3" id="basedCanvas"></canvas>
-			<label class="text-center mb-1" for="func">Enter function f(x)</label>
+		<div class="d-grid grid-center">
+			<canvas id="basedCanvas" class="border border-dark border-2 m-3"></canvas>
+			<label for="func" class="text-center mb-1">Enter function f(x)</label>
 			<div class="d-flex justify-content-center">
-				<input class="btn btn-outline-success mb-4" type="button" value="Refresh" id="refresh" onclick="buttonPress()">
+				<button type="button" onclick="buttonPress()" class="btn btn-success mb-4">refresh</button>
 				<div class="form-group ms-1">
-					<input class="form-control" type="text" value="x" id="func">
+					<input id="func" type="text" value="x" class="form-control">
 					<small class="form-text text-muted">Note: you can use only Math functions without prefix</small>
 				</div>
 			</div>
