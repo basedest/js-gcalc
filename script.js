@@ -2,10 +2,13 @@ let canvas;
 let ctx;
 let scale;
 let func = "x";
+const pi = Math.PI;
+const gridDensity = 16;
 
 function setup() {
   canvas = document.getElementById('basedCanvas');
-  //
+
+  // forcing canvas to be in 1x1 ratio not to deal with grid displaying problem
   if (visualViewport.width < visualViewport.height) {
     canvas.style.width = '80vw';
     canvas.style.height = '80vw';
@@ -14,6 +17,7 @@ function setup() {
     canvas.style.width = '80vh';
     canvas.style.height = '80vh';
   }
+
   ctx = canvas.getContext('2d');
   draw();
 }
@@ -28,6 +32,10 @@ function resizeCanvasToDisplaySize(canvas) {
   if (canvas.width !== width || canvas.height !== height) {
     canvas.width = width;
     canvas.height = height;
+    //setting canvas grid css properties
+    scale = width/gridDensity;
+    canvas.style.backgroundSize = `${scale}px ${scale}px`;
+    canvas.style.backgroundPosition = `calc(center+${scale}) center`;
     return true;
   }
 
@@ -37,35 +45,15 @@ function resizeCanvasToDisplaySize(canvas) {
 function initilizeGraph() {
   //resizing stuff
   resizeCanvasToDisplaySize(canvas);
-  scale = canvas.width/16;
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.translate(canvas.width/2, canvas.height/2);
 
   // clearing screen
   ctx.clearRect(-canvas.width/2,-canvas.height/2,canvas.width,canvas.height);
-  // setting stroke style
-  ctx.strokeStyle="Gray";
-  ctx.lineWidth = 1;
-  // tracing vertical grid
-  ctx.beginPath();
-  for (var x = -canvas.width/2; x < canvas.width/2; x+=scale) {
-    ctx.moveTo(x,-canvas.height/2);
-    ctx.lineTo(x,canvas.height/2);
-    ctx.stroke();
-    ctx.moveTo(x,-canvas.height/2);
-  }
-  // tracing horizontal grid
-  ctx.beginPath();
-  for (var y = -canvas.height/2; y < canvas.height/2; y+=scale) {
-    ctx.moveTo(-canvas.width/2,y);
-    ctx.lineTo(canvas.width/2,y);
-    ctx.stroke();
-    ctx.moveTo(-canvas.width/2,y);
-  }
   // drawing axises
-  ctx.beginPath();
   ctx.strokeStyle="Black";
   ctx.lineWidth = 3;
+  ctx.beginPath();
   ctx.moveTo(-canvas.width/2, 0);
   ctx.lineTo(canvas.width/2, 0);
   ctx.stroke();
@@ -103,4 +91,4 @@ function draw() {
   drawGraph(func);
 }
 
-requestAnimationFrame(draw);
+window.addEventListener('resize', draw, true);
