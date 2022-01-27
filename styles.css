@@ -5,9 +5,6 @@
 
 canvas {
     background: linear-gradient( #bbb, transparent 2px), linear-gradient( 90deg, #bbb, transparent 2px);
-    /*  that's how it should've be
-        but i'm too lazy to optimize grid for that
-    width: 80vw;
-    height: 80vh;
-    */
+    width: 80vmin;
+    height: 80vmin;
   }

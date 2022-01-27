@@ -7,17 +7,6 @@ const gridDensity = 16;
 
 function setup() {
   canvas = document.getElementById('basedCanvas');
-
-  // forcing canvas to be in 1x1 ratio not to deal with grid displaying problem
-  if (visualViewport.width < visualViewport.height) {
-    canvas.style.width = '80vw';
-    canvas.style.height = '80vw';
-  }
-  else {
-    canvas.style.width = '80vh';
-    canvas.style.height = '80vh';
-  }
-
   ctx = canvas.getContext('2d');
   draw();
 }
