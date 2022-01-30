@@ -5,6 +5,7 @@
 
 canvas {
     background: linear-gradient( #bbb, transparent 2px), linear-gradient( 90deg, #bbb, transparent 2px);
+    background-color: white !important;
     width: 80vmin;
     height: 80vmin;
   }
