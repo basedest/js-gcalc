@@ -1,14 +1,16 @@
-let canvas;
-let ctx;
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+const pi = Math.PI;
+
 let scale;
 let func = "x";
-const pi = Math.PI;
-const gridDensity = 16;
+let gridDensity = 20;
 
-function setup() {
-  canvas = document.getElementById('basedCanvas');
-  ctx = canvas.getContext('2d');
-  draw();
+//setting canvas grid css properties
+function gridResize() {
+  scale = canvas.width/gridDensity;
+  canvas.style.backgroundSize = `${scale}px ${scale}px`;
+  canvas.style.backgroundPosition = `calc(center+${scale}) center`;
 }
 
 // setting canvas size to be in 1x resolution
@@ -21,19 +23,15 @@ function resizeCanvasToDisplaySize(canvas) {
   if (canvas.width !== width || canvas.height !== height) {
     canvas.width = width;
     canvas.height = height;
-    //setting canvas grid css properties
-    scale = width/gridDensity;
-    canvas.style.backgroundSize = `${scale}px ${scale}px`;
-    canvas.style.backgroundPosition = `calc(center+${scale}) center`;
     return true;
   }
-
   return false;
 }
 
 function initilizeGraph() {
   //resizing stuff
   resizeCanvasToDisplaySize(canvas);
+  gridResize();
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.translate(canvas.width/2, canvas.height/2);
 
@@ -79,5 +77,15 @@ function draw() {
   initilizeGraph();
   drawGraph(func);
 }
+//scrolling magic
+canvas.addEventListener('wheel', (event) => {
+  event.preventDefault();
+  gridDensity += Math.floor(event.deltaY/53)*2;
+  gridDensity = gridDensity < 2 ? 2 : gridDensity;
+  console.log(gridDensity);
+  draw();
+});
 
 window.addEventListener('resize', draw, true);
+
+draw();
