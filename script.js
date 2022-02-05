@@ -83,7 +83,6 @@ canvas.addEventListener('wheel', (event) => {
   event.preventDefault();
   gridDensity += Math.floor(event.deltaY/53)*2;
   gridDensity = gridDensity < 2 ? 2 : gridDensity;
-  console.log(gridDensity);
   draw();
 });
 
