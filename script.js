@@ -3,7 +3,7 @@ const ctx = canvas.getContext('2d');
 const pi = Math.PI;
 
 let scale;
-let func = "x";
+let func = 'x';
 let gridDensity = 20;
 
 //setting canvas grid css properties
@@ -38,7 +38,7 @@ function initilizeGraph() {
   // clearing screen
   ctx.clearRect(-canvas.width/2,-canvas.height/2,canvas.width,canvas.height);
   // drawing axises
-  ctx.strokeStyle="Black";
+  ctx.strokeStyle='Black';
   ctx.lineWidth = 3;
   ctx.beginPath();
   ctx.moveTo(-canvas.width/2, 0);
@@ -51,7 +51,7 @@ function initilizeGraph() {
 
 function drawGraph(f) {
     ctx.lineWidth = 3;
-    ctx.strokeStyle="#198754"; //nice green color
+    ctx.strokeStyle='#198754'; //nice green color
     ctx.beginPath();
     let x_ = -canvas.width/2;
     let x = x_/scale;
@@ -67,7 +67,7 @@ function drawGraph(f) {
 }
 
 function buttonPress() {
-  let fStr = document.getElementById("func").value;
+  let fStr = document.getElementById('func').value;
   // add 'Math.' prefix to functions
   func = fStr.replace(/(\w+(?=\())/gm, `Math.$1`);
   draw();
@@ -77,6 +77,7 @@ function draw() {
   initilizeGraph();
   drawGraph(func);
 }
+
 //scrolling magic
 canvas.addEventListener('wheel', (event) => {
   event.preventDefault();
